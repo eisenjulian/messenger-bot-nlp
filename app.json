@@ -1,5 +1,5 @@
 {
-    "name": "Facebook Messenger Platform API",
+    "name": "Messenger Platform API Sample",
     "description": "This is a sample application for Facebook Messanger Platform API",
     "keywords": ["chatbot", "messenger", "nodejs"],
     "env": {
