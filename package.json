@@ -4,7 +4,8 @@
   "description": "Messenger Bot sample with built-in NLP",
   "main": "app.js",
   "scripts": {
-    "start": "SET DEBUG=true && nodemon app.js"
+    "start": "node app.js",
+    "debug": "SET DEBUG=true && nodemon app.js"
   },
   "repository": {
     "type": "git",
