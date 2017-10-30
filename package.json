@@ -1,0 +1,32 @@
+{
+  "name": "messenger-bot-nlp",
+  "version": "1.0.0",
+  "description": "Messenger Bot sample with built-in NLP",
+  "main": "app.js",
+  "scripts": {
+    "start": "SET DEBUG=true && nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eisenjulian/messenger-bot-nlp.git"
+  },
+  "keywords": [
+    "nlp",
+    "messenger",
+    "bot"
+  ],
+  "author": "Julian Eisenschlos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eisenjulian/messenger-bot-nlp/issues"
+  },
+  "homepage": "https://github.com/eisenjulian/messenger-bot-nlp#readme",
+  "dependencies": {
+    "config": "^1.27.0",
+    "messenger-bot": "^2.4.0"
+  },
+  "devDependencies": {
+    "ngrok": "^2.2.23",
+    "nodemon": "^1.12.1"
+  }
+}
