@@ -1,0 +1,19 @@
+{
+    "name": "Facebook Messenger Platform API",
+    "description": "This is a sample application for Facebook Messanger Platform API",
+    "keywords": ["chatbot", "messenger", "nodejs"],
+    "env": {
+        "MESSENGER_APP_SECRET": {
+            "description": "Facebook App Secret",
+            "required":  true
+        },
+        "MESSENGER_PAGE_ACCESS_TOKEN": {
+            "description": "Facebook Page Access Token",
+            "required":  true
+        },
+        "MESSENGER_VALIDATION_TOKEN": {
+            "description": "Facebook Webhook Verify Text",
+            "required":  true
+        }
+    }
+}
