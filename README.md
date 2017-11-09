@@ -31,4 +31,23 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
 
 ## Running locally
 
+Note than when you deply to Heroku a PostgreSQL database will be created that you will use when running locally as well. Do this once:
+```
+git clone https://github.com/<USER_ID>/messenger-bot-nlp.git
+cd messenger-bot-nlp
+# Clone the values in your heroku apps to your local machine
+heroku config -s --app <HEROKU_APP_NAME> > .env
+npm install
+```
+Do this every time to start a new webserver
+```
+heroku local web
+```
+and to expose the server to the world via **ngrok**
+```
+node_modules/ngrok/bin/ngrok http 3000
+```
+This will print a URL of the form `https://<SOME_CODE>.ngrok.io` that you should use to reconfigure your webhook to point to your local machine. When you are done make sure to reverse this to point back to your heroku app.
+
+
 ## Review process
