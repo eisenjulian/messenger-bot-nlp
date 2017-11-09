@@ -24,7 +24,8 @@
   "homepage": "https://github.com/eisenjulian/messenger-bot-nlp#readme",
   "dependencies": {
     "config": "^1.27.0",
-    "messenger-bot": "^2.4.0"
+    "messenger-bot": "^2.4.0",
+    "pg": "7.4.0"
   },
   "devDependencies": {
     "ngrok": "^2.2.23",
