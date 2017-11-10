@@ -19,7 +19,7 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
    * In the *Token Generation* section select your page and generate a token. This will allow our server to listen and reply to conversations
    * Find the *Webhooks* section and subscribe to all events. Then find and select your page and subscribe
    * In the *Built-In NLP* section, select your page, choose the *Custom* model, add you wit.ai **Server Access Token** previously retrieved and *Save*
- * You are ready to go! Tap deploy button and you will need to enter the **App ID** and **App Secret** from you Facebook App that can be found and in the **Dasboard** tab. You will also need a **Verification Token**, but that can be any string you want.
+ * You are ready to go! Tap deploy button and you will need to enter the **App ID** and **App Secret** from you Facebook App that can be found in the **Dasboard** tab. You will also need a **Verification Token**, but that can be any string you want.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
