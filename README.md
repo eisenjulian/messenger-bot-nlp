@@ -5,7 +5,7 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
 
  * Install [Node.js](https://nodejs.org/en/download/)
  * A [github](https://github.com/join?source=login) account
- * Create an free account and install [Heroku Command Line](https://devcenter.heroku.com/articles/heroku-cli)
+ * Create a free account and install [Heroku Command Line](https://devcenter.heroku.com/articles/heroku-cli)
  * Make sure you have a [Facebook App](https://developers.facebook.com/apps) account that is not currently using webhooks
  * And a free [wit.ai](https://wit.ai/) account, it will do the NLP heavy lifting for free!
  
