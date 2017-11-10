@@ -1,7 +1,16 @@
 {
     "name": "Messenger Platform API Sample",
     "description": "This is a sample application for Facebook Messanger Platform API",
+    "success_url": "/welcome",
     "keywords": ["chatbot", "messenger", "nodejs"],
+    "addons": [
+        {
+            "plan": "heroku-postgresql",
+            "options": {
+                "version": "9.6"
+            }
+        }
+    ],
     "env": {
         "MESSENGER_APP_SECRET": {
             "description": "Facebook App Secret",
