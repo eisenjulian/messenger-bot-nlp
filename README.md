@@ -6,7 +6,7 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
  * Install [Node.js](https://nodejs.org/en/download/)
  * A [github](https://github.com/join?source=login) account
  * Create a free account and install [Heroku Command Line](https://devcenter.heroku.com/articles/heroku-cli)
- * Make sure you have a [Facebook App](https://developers.facebook.com/apps) account that is not currently using webhooks
+ * Make sure you have a [Facebook Developer App](https://developers.facebook.com/apps) that is not currently using webhooks
  * And a free [wit.ai](https://wit.ai/) account, it will do the NLP heavy lifting for free!
  
 ## Set-up
@@ -51,3 +51,15 @@ This will print a URL of the form `https://<SOME_CODE>.ngrok.io` that you should
 
 
 ## Review process
+
+Once you're happy with your bot you will want to show it to others, sadly you need Facebook's approval before letting your app out in the wild. The good thing is that you'll only need to this once.
+
+First go the **App Review** and make sure to toggle your app state to **Public**.
+
+In the **Roles** section on your app's dashboard you can add as many friends as you want as **test users**, who will be able to talk to your bot regardless of its approval status.
+
+Finally, in the **Messenger** section you can create a new submission. You will only need the `pages_messaging` permission. Add the relevant details and click on **Submit for Review**. It should take only a few days to get approved.
+
+Join the [Messenger Platform Developer Community](https://www.facebook.com/groups/messengerplatform/) to get help with anything Messenger Bot related.
+
+Good luck!
