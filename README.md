@@ -29,6 +29,16 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
 
 ## Adding NLP
 
+A quick overview of **wit.ai** NLU engine: it transforms a text snippet into a list of entities, both built-in or custom defined. Entities come in 4 flavours. You can check [the docs](https://wit.ai/docs/recipes#which-entity-should-i-use) for more info.
+ * *Keywords* are entities from a finite set of posibilites such as countries or vegetables
+ * *Free-text* are specific parts of the sentence that we want to extract, like the message content to send, or the text snippet to translate
+ * *Free-text & keywords* is of course a mixture of the last two, where we cannot anticipate all the possible values
+ * *Traits* are labels that affect the whole sentence, not just a single part, like the sentiment or the intent of the phrase
+
+In your wit.ai console, create a *trait* entity called *intent*. We will use that *trait* to store the main intentions the bot is expected to recognize, like *greetings*, *help* and your bot's particular expertise.
+
+Try to come up with at least 10-20 samples for each intent, and as you type them assign the propper entities to extract. Most importantly, have other people test your bot and use the **Inbox** to learn from the examples.
+
 ## Running locally
 
 Note than when you deply to Heroku a PostgreSQL database will be created that you will use when running locally as well. Do this once:
