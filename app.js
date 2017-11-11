@@ -15,15 +15,35 @@ const UNK = 'UNK';
  * `entities` are all the recognized entities with their scores
  * `text` is the original written input by the user
  * `reply` is a handler to send messages to the user
+ * Docs: https://developers.facebook.com/docs/messenger-platform/send-messages
  */
 const onMessage = ({sender, intent, entities, text, reply}) => {
     
     // Replace the code here
+    reply([
+        {
+            attachment: {
+                type: 'image', 
+                payload: {url: 'https://i.giphy.com/media/3ohs7IpuSdt3xWYmQM/200.gif'}
+            }
+        },
+        {
+            text, 
+            quick_replies: [
+            {
+                content_type: 'text',
+                title: '¿?',
+                payload: 'SOME_INTENT'
+            },
+            {
+                content_type: 'text',
+                title: '#2',
+                payload: 'SOME_OTHER_INTENT'
+            }
+        ]}
+    ]);
 
-    reply({ text }, (err) => {
-        if (err) throw err
-        console.log(`Echoed back to ${sender.first_name} ${sender.last_name}: ${text}`)
-    });
+    console.log(`Echoed back to ${sender.first_name} ${sender.last_name}: ${text}`);
 };
 
 /**
@@ -54,6 +74,16 @@ const bot = new Bot({
 
 (['message', 'postback']).map(event => {
     bot.on(event, (payload, reply, actions) => {
+        const replyWithDelay = (messages, callback) => {
+            if (messages.length == 0) return;
+            actions.setTyping(true);
+            setTimeout(() => reply(messages[0], (err) => {
+                if (err) throw err;
+                messages.shift();
+                if (messages.size == 0 && callback) callback(err);
+                replyWithDelay(messages);
+            }), 600);
+        };
         bot.getProfile(payload.sender.id, (err, profile) => {
             if (err) throw err;
             client.query(
@@ -68,7 +98,7 @@ const bot = new Bot({
                             intent: payload.postback.payload, 
                             entities: {}, 
                             text: payload.postback.title, 
-                            reply
+                            reply: replyWithDelay
                         });
                     } else if (event == 'message') {
                         if (payload.message.quick_reply) {
@@ -77,7 +107,7 @@ const bot = new Bot({
                                 intent: payload.message.quick_reply.payload, 
                                 entities: {}, 
                                 text: payload.message.text, 
-                                reply
+                                reply: replyWithDelay
                             });
                         } else if (payload.message.text) {
                             const entities = (payload.message.nlp || {}).entities || {};
@@ -91,7 +121,7 @@ const bot = new Bot({
                                 intent, 
                                 entities, 
                                 text: payload.message.text, 
-                                reply
+                                reply: replyWithDelay
                             });
                         } else if (payload.attachments) {
                             const attachment = payload.attachments[0];
@@ -99,7 +129,7 @@ const bot = new Bot({
                                 sender,
                                 type: attachment.type,
                                 payload: attachment.payload,
-                                reply
+                                reply: replyWithDelay
                             });
                         }
                     }
@@ -156,4 +186,4 @@ app.post('/webhook', (req, res) => {
 });
 
 http.createServer(app).listen(process.env.PORT || 3000);
-console.log('Echo bot server running at port ' + process.env.PORT || 3000);
+console.log('Echo bot server running at port ' + (process.env.PORT || 3000));
