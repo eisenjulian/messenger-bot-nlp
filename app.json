@@ -1,7 +1,7 @@
 {
     "name": "Messenger Platform API Sample",
     "description": "This is a sample application for Facebook Messanger Platform API",
-    "success_url": "/welcome",
+    "success_url": "/",
     "keywords": ["chatbot", "messenger", "nodejs"],
     "addons": [
         {

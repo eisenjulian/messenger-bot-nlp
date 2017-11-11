@@ -132,7 +132,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 const URL = 'https://graph.facebook.com/v2.11/me?fields=id&access_token=' + process.env.MESSENGER_PAGE_ACCESS_TOKEN;
-app.get('/welcome', (req, res) => {
+app.get('/', (req, res) => {
     httpRequest(URL, (error, response, body) => {
         const page = JSON.parse(body);
         res.end(`<div>
