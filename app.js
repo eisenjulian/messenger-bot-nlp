@@ -164,14 +164,23 @@ const URL = 'https://graph.facebook.com/v2.11/me?fields=id&access_token=' + proc
 app.get('/', (req, res) => {
     httpRequest(URL, (error, response, body) => {
         const page = JSON.parse(body);
-        res.end(`<div>
-            <h1>Hello World!</h1>
-            <ul>
-                <li>Go chat at <a href="https://m.me/${page.id}" target="_blank">m.me/${page.id}</a></li>
-                <li>Webhook URL: https://${req.headers.host}/webhook</li>
-                <li>Verify token: ${process.env.MESSENGER_VALIDATION_TOKEN}</li>
-            <ul/>
-        </div>`);
+        res.end(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <title>Bot Admin</title>
+            </head>
+            <body style="background-color: honeydew;">
+                <div style="font-family: sans-serif;">
+                    <h1>Hello World!</h1>
+                    <ul>
+                        <li>Go chat at <a href="https://m.me/${page.id}" target="_blank">m.me/${page.id}</a></li>
+                        <li>Webhook URL: https://${req.headers.host}/webhook</li>
+                        <li>Verify token: ${process.env.MESSENGER_VALIDATION_TOKEN}</li>
+                    <ul/>
+                </div>
+            </body>
+            </html>`);
     });
 });
 
