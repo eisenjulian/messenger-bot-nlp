@@ -58,13 +58,12 @@ const onAttachment = ({sender, type, payload, reply}) => {
 
 const client = new Client({connectionString: process.env.DATABASE_URL, ssl: true});
 client.connect();
-// client.query(
-//     'CREATE TABLE IF NOT EXISTS users (id VARCHAR(50) PRIMARY KEY, data JSONB);', 
-//     (err, res) => {
-//         if (err) throw err;
-//         console.log(res);
-//     }
-// );
+client.query(
+    'CREATE TABLE IF NOT EXISTS users (id VARCHAR(50) PRIMARY KEY, data JSONB);', 
+    (err, res) => {
+        if (err) throw err;
+    }
+);
 
 const bot = new Bot({
     token: process.env.MESSENGER_PAGE_ACCESS_TOKEN,
