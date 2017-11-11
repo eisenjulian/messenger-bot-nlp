@@ -1,17 +1,37 @@
+'use strict'
 const http = require('http');
+const express = require('express');
+const bodyParser = require('body-parser');
+const httpRequest = require('request');
 const Bot = require('messenger-bot');
 const {Client} = require('pg');
 
 const UNK = 'UNK';
 
+/**
+ * Main method to hanldle incoming messages
+ * `sender` object contians all info saved for this user. If changed, changes will be persisted
+ * `intent` is the main recognized intention, or `UNK` if unknown
+ * `entities` are all the recognized entities with their scores
+ * `text` is the original written input by the user
+ * `reply` is a handler to send messages to the user
+ */
 const onMessage = ({sender, intent, entities, text, reply}) => {
-    // Add some code here
+    
+    // Replace the code here
+
     reply({ text }, (err) => {
         if (err) throw err
         console.log(`Echoed back to ${sender.first_name} ${sender.last_name}: ${text}`)
     });
 };
 
+/**
+ * Main method to hanldle incoming messages
+ * `sender` object contians all info saved for this user. If changed, changes will be persisted
+ * `type` is the kind of attachment. Possible values are audio, file, image, location or video
+ * `payload` is the attachment data, has `url` field for media, or `coordinates` for location
+ */
 const onAttachment = ({sender, type, payload, reply}) => {
     // And some more code here
 };
@@ -104,5 +124,36 @@ bot.on('error', (err) => {
     console.log(err.message)
 });
 
-http.createServer(bot.middleware()).listen(process.env.PORT || 3000)
+let app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+const URL = 'https://graph.facebook.com/v2.11/me?fields=id&access_token=' + process.env.MESSENGER_PAGE_ACCESS_TOKEN;
+app.get('/welcome', (req, res) => {
+    httpRequest(URL, (error, response, body) => {
+        const page = JSON.parse(body);
+        res.end(`<div>
+            <h1>Hello World!</h1>
+            <ul>
+                <li>Go chat at <a href="https://m.me/${page.id}" target="_blank">m.me/${page.id}</a></li>
+                <li>Webhook URL: https://${req.headers.host}/webhook</li>
+                <li>Verify token: ${process.env.MESSENGER_VALIDATION_TOKEN}</li>
+            <ul/>
+        </div>`);
+    });
+});
+
+app.get('/webhook', (req, res) => {
+    return bot._verify(req, res);
+});
+
+app.post('/webhook', (req, res) => {
+    bot._handleMessage(req.body);
+    res.end(JSON.stringify({status: 'ok'}));
+});
+
+http.createServer(app).listen(process.env.PORT || 3000);
 console.log('Echo bot server running at port 3000.')
