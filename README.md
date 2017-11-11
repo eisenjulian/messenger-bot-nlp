@@ -23,7 +23,7 @@ A Facebook Messenger bot sample integrated with built-in NLP from wit.ai fully d
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
- * One last thing, now that you have a *node.js* webserver in production we need to tell Facebook where to forward all incoming messages to  your bot. Go to the **Webhooks** section on your Facebook app and click on *Edit Subscription*. You can get the Callbacck URL from Heroku in the Open App button, it should be `https://<APP_ID>.herokuapp.com/`. The Verify Token is the one you entered in the previous step
+ * One last thing, now that you have a *node.js* webserver in production we need to tell Facebook where to forward all incoming messages to  your bot. Go to the **Webhooks** section on your Facebook app and click on *Edit Subscription*. You can get the Callbacck URL from Heroku in the Open App button, it should be `https://<APP_ID>.herokuapp.com/webhook`. The Verify Token is the one you entered in the previous step
  * Talk to your page, it should reply
  * Now it's your turn to give it some personality.
 
@@ -57,7 +57,7 @@ and to expose the server to the world via **ngrok**
 ```
 node_modules/ngrok/bin/ngrok http 3000
 ```
-This will print a URL of the form `https://<SOME_CODE>.ngrok.io` that you should use to reconfigure your webhook to point to your local machine. When you are done make sure to reverse this to point back to your heroku app.
+This will print a URL of the form `https://<SOME_CODE>.ngrok.io/webhook` that you should use to reconfigure your webhook to point to your local machine. When you are done make sure to reverse this to point back to your heroku app.
 
 
 ## Review process
