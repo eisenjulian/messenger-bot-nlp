@@ -156,4 +156,4 @@ app.post('/webhook', (req, res) => {
 });
 
 http.createServer(app).listen(process.env.PORT || 3000);
-console.log('Echo bot server running at port 3000.')
+console.log('Echo bot server running at port ' + process.env.PORT || 3000);
