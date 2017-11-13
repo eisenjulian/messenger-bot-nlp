@@ -20,28 +20,37 @@ const UNK = 'UNK';
 const onMessage = ({sender, intent, entities, text, reply}) => {
     
     // Replace the code here
-    reply([
-        {
-            attachment: {
-                type: 'image', 
-                payload: {url: 'https://i.giphy.com/media/3ohs7IpuSdt3xWYmQM/200.gif'}
-            }
-        },
-        {
-            text, 
-            quick_replies: [
-            {
-                content_type: 'text',
-                title: '¿?',
-                payload: 'SOME_INTENT'
-            },
-            {
-                content_type: 'text',
-                title: '#2',
-                payload: 'SOME_OTHER_INTENT'
-            }
-        ]}
-    ]);
+    switch (intent) {
+        // Greeting
+        case 'greeting':
+            reply([{text: `¡Hola ${sender.first_name}!`}]);
+            break;
+        // The bot didn't understand
+        case UNK:
+            reply([
+                {
+                    attachment: {
+                        type: 'image', 
+                        payload: {url: 'https://i.giphy.com/media/3ohs7IpuSdt3xWYmQM/200.gif'}
+                    }
+                },
+                {
+                    text, 
+                    quick_replies: [
+                    {
+                        content_type: 'text',
+                        title: '¿?',
+                        payload: 'SOME_INTENT'
+                    },
+                    {
+                        content_type: 'text',
+                        title: '#2',
+                        payload: 'SOME_OTHER_INTENT'
+                    }
+                ]}
+            ]);
+            break;
+    }
 
     console.log(`Echoed back to ${sender.first_name} ${sender.last_name}: ${text}`);
 };
