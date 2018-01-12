@@ -198,7 +198,7 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post('/webhook', (req, res) => {
-    console.log(req.body);
+    console.log(JSON.stringify(req.body, null, 2));
     bot._handleMessage(req.body);
     res.end(JSON.stringify({status: 'ok'}));
 });
