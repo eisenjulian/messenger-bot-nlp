@@ -9,7 +9,7 @@ const {Client} = require('pg');
 const UNK = 'UNK';
 
 /**
- * Main method to hanldle incoming messages
+ * Main method to handle incoming messages
  * `sender` object contians all info saved for this user. If changed, changes will be persisted
  * `intent` is the main recognized intention, or `UNK` if unknown
  * `entities` are all the recognized entities with their scores
@@ -198,6 +198,7 @@ app.get('/webhook', (req, res) => {
 });
 
 app.post('/webhook', (req, res) => {
+    console.log(req.body);
     bot._handleMessage(req.body);
     res.end(JSON.stringify({status: 'ok'}));
 });
